@@ -20,8 +20,8 @@ for (int i = 0; i < size; i++)
     Console.Write(arr[i] + " ");
 }
 
-int[] newArr = new int[size];
-newArr[0] = arr[0];
+int[] tempArr = new int[size];
+tempArr[0] = arr[0];
 int sizeNewArr = 1;
 
 for (int i = 1; i < size; i++)
@@ -30,7 +30,7 @@ for (int i = 1; i < size; i++)
 
     for (int j = 0; j < sizeNewArr; j++)
     {
-        if (arr[i] == newArr[j])
+        if (arr[i] == tempArr[j])
         {
             isUnique = false;
             break;
@@ -39,13 +39,16 @@ for (int i = 1; i < size; i++)
 
     if (isUnique)
     {
-        newArr[sizeNewArr] = arr[i];
+        tempArr[sizeNewArr] = arr[i];
         sizeNewArr++;
     }
 }
 
+int[] newArr = new int[sizeNewArr];
+
 Console.Write("\nNew array: ");
 for (int i = 0; i < sizeNewArr; i++)
 {
+    newArr[i] = tempArr[i];
     Console.Write(newArr[i] + " ");
 }
