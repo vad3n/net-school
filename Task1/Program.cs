@@ -3,25 +3,28 @@ int a = int.Parse(Console.ReadLine());
 Console.Write("Enter b: ");
 int b = int.Parse(Console.ReadLine());
 
+if (a < 0 || a > b)
+{
+    Console.WriteLine("Incorrect value for a!");
+    return;
+}
+
 for (int i = a; i <= b; i++)
 {
     string duodecimal = "";
     int number = i;
+    int count = 0;
 
     while (number > 0)
     {
         var reminder = number % 12;
-        duodecimal += reminder <= 9 ? reminder.ToString() : (reminder == 10 ? "A" : "B");
-        number /= 12;
-    }
 
-    int count = 0;
-    for (int index = 0; index < duodecimal.Length; index++)
-    {
-        if (duodecimal[index] == 'A')
+        if (reminder == 10)
         {
             count++;
         }
+
+        number /= 12;
     }
 
     if (count == 2)
