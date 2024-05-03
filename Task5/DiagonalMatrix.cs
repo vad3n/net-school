@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Task5
 {
@@ -17,6 +12,7 @@ namespace Task5
         {
             if (elements == null)
             {
+                _elements = new int[0];
                 Size = 0;
             }
 
@@ -27,11 +23,16 @@ namespace Task5
             }
         }
 
+        private bool IsIndexesInbound(int i, int j)
+        {
+            return i == j && i >= 0 && i < Size && j >= 0 && j < Size;
+        }
+
         public int this[int i, int j]
         {
             get
             {
-                if (i != j || i < 0 || i >= Size || j < 0 || j >= Size)
+                if (!IsIndexesInbound(i, j))
                 {
                     return 0;
                 }
@@ -41,7 +42,7 @@ namespace Task5
 
             set
             {
-                if (i != j || i < 0 || i >= Size || j < 0 || j >= Size)
+                if (!IsIndexesInbound(i, j))
                 {
                     return;
                 }
@@ -82,7 +83,14 @@ namespace Task5
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            int result = 0;
+
+            foreach (var element in _elements)
+            {
+                result += result * 15 + element;
+            }
+
+            return result;
         }
 
         public override string ToString()
