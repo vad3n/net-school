@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task6
+﻿namespace Task6
 {
-    public class Training
+    public class Training : Entity, ICloneable
     {
         private Entity[] _set = new Entity[10];
         private int _count = 0;
 
-        public string? Description { get; set; }
-
-        public Training(string? description)
+        public Training(string? description) : base(description)
         {
-            Description = description;
+
         }
 
-        public Training Clone()
+        public object Clone()
         {
             Training result = new Training(Description);
 

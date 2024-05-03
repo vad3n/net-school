@@ -13,7 +13,7 @@ training1.Add(new Lecture("Lecture 6", "Topic 6"));
 training1.Add(new Lecture("Lecture 7", "Topic 7"));
 training1.Add(new Lecture("Lecture 8", "Topic 8"));
 Console.WriteLine(training1.IsPractical());
-Training training2 = training1.Clone();
+Training training2 = (Training)training1.Clone();
 training1.Add(new Lecture("Lecture 9", "Topic 9"));
 training2.Add(new PracticalLesson("Lesson 3", "Task 3", "Solution 3"));
 Console.WriteLine(training2.IsPractical());
