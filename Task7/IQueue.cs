@@ -1,17 +1,11 @@
 ﻿namespace Task7
 {
-    public interface IQueue<T>
+    public interface IQueue<T> : ICloneable where T : struct
     {
         void Enqueue(T e);
 
         T Dequeue();
 
         bool IsEmpty();
-
-        int GetCount();
-
-        int GetCapacity();
-
-        T[] GetElements();
     }
 }

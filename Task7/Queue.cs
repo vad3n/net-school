@@ -1,9 +1,11 @@
 ﻿namespace Task7
 {
-    public class Queue<T> : IQueue<T>
+    public class Queue<T> : IQueue<T> where T : struct
     {
         private T[] _elements;
         private int _count;
+        private int _head = 0;
+        private int _tail = 0;
 
         public Queue(int capacity)
         {
@@ -18,7 +20,15 @@
                 throw new Exception("Queue is full.");
             }
 
-            _elements[_count++] = e;
+            _elements[_tail] = e;
+            _tail++;
+
+            if (_tail == _elements.Length)
+            {
+                _tail = 0;
+            }
+
+            _count++;
         }
 
         public T Dequeue()
@@ -28,14 +38,16 @@
                 throw new Exception("Queue is empty.");
             }
 
-            T result = _elements[0];
+            T result = _elements[_head];
+            _head++;
 
-            for (int i = 0; i < _count; i++)
+            if (_head == _elements.Length)
             {
-                _elements[i] = _elements[i + 1];
+                _head = 0;
             }
 
             _count--;
+
             return result;
         }
 
@@ -44,19 +56,32 @@
             return _count == 0;
         }
 
-        public int GetCount()
+        public object Clone()
         {
-            return _count;
-        }
+            Queue<T> result = new Queue<T>(_elements.Length);
 
-        public int GetCapacity()
-        {
-            return _elements.Length;
-        }
+            if (_tail > _head)
+            {
+                for (int i = _head; i < _tail; i++)
+                {
+                    result.Enqueue(_elements[i]);
+                }
+            }
 
-        public T[] GetElements()
-        {
-            return _elements;
+            else
+            {
+                for (int i = _head; i < _elements.Length; i++)
+                {
+                    result.Enqueue(_elements[i]);
+                }
+
+                for (int i = 0; i < _tail; i++)
+                {
+                    result.Enqueue(_elements[i]);
+                }
+            }
+
+            return result;
         }
     }
 }

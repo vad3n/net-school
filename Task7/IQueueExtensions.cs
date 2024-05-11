@@ -2,20 +2,10 @@
 {
     public static class IQueueExtensions
     {
-        public static IQueue<T> Tail<T>(this IQueue<T> queue)
+        public static IQueue<T> Tail<T>(this IQueue<T> queue) where T : struct
         {
-            IQueue<T> newQueue = new Task7.Queue<T>(queue.GetCapacity());
-            T[] elements = queue.GetElements();
-
-            if (queue.IsEmpty())
-            {
-                return newQueue;
-            }
-
-            for (int i = 1; i < queue.GetCount(); i++)
-            {
-                newQueue.Enqueue(elements[i]);
-            }
+            IQueue<T> newQueue = (IQueue<T>)queue.Clone();
+            newQueue.Dequeue();
 
             return newQueue;
         }
