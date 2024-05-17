@@ -21,8 +21,8 @@
 
             if ((_numerator < 0 && _denominator < 0) || (_numerator > 0 && _denominator < 0))
             {
-                _numerator *= -1;
-                _denominator *= -1;
+                _numerator = -_numerator;
+                _denominator = -_denominator;
             }
         }
 
@@ -83,6 +83,11 @@
 
         public static Rational operator *(Rational first, Rational second)
         {
+            if (second.Numerator == 0 || second.Denominator == 0)
+            {
+                throw new ArgumentException("Invalid operation.");
+            }
+
             return new Rational(first.Numerator * second.Numerator, first.Denominator * second.Denominator);
         }
 
@@ -99,28 +104,6 @@
         public static implicit operator Rational(int number)
         {
             return new Rational(number, 1);
-        }
-    }
-
-    internal static class HelperFunctions
-    {
-        public static int GetGdc(int a, int b)
-        {
-            if (a < b)
-            {
-                int temp = a;
-                a = b;
-                b = temp;
-            }
-
-            while (b != 0)
-            {
-                int temp = a % b;
-                a = b;
-                b = temp;
-            }
-
-            return a;
         }
     }
 }
