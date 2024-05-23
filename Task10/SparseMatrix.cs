@@ -39,15 +39,7 @@ namespace Task10
 
                 Tuple<int, int> key = new Tuple<int, int>(i, j);
 
-                if (_elements.ContainsKey(key))
-                {
-                    return _elements[key];
-                }
-
-                else
-                {
-                    return 0;
-                }
+                return _elements.ContainsKey(key) ? _elements[key] : 0;
             }
 
             set
