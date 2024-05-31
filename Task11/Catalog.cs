@@ -7,7 +7,7 @@ namespace Task11
     {
         private IList<Tuple<string, Book>> _books;
 
-        private bool isValidISBN(string isbn)
+        private bool IsValidISBN(string isbn)
         {
             return (isbn.Length == 17 && Regex.IsMatch(isbn, @"\d{3}-\d{1}-\d{2}-\d{6}-\d{1}")) || (isbn.Length == 13 && Regex.IsMatch(isbn, @"\d{13}"));
         }
@@ -21,7 +21,7 @@ namespace Task11
         {
             get
             {
-                if (!isValidISBN(isbn))
+                if (!IsValidISBN(isbn))
                 {
                     throw new ArgumentException("Invalid format for ISBN.");
                 }
@@ -31,7 +31,7 @@ namespace Task11
 
             set
             {
-                if (!isValidISBN(isbn))
+                if (!IsValidISBN(isbn))
                 {
                     throw new ArgumentException("Invalid format for ISBN.");
                 }
