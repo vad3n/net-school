@@ -1,16 +1,16 @@
 ﻿namespace Task12
 {
-    public class BookTuple
+    public class BookEntity
     {
         public string ISBN { get; set; }
         public Book Book { get; set; }
 
-        public BookTuple()
+        public BookEntity()
         {
 
         }
 
-        public BookTuple(string isbn, Book book)
+        public BookEntity(string isbn, Book book)
         {
             ISBN = isbn;
             Book = book;
